@@ -1,0 +1,72 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2332"/>
+      <stop offset="100%" stop-color="#0d1419"/>
+    </linearGradient>
+    <linearGradient id="snakeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6ef09a"/>
+      <stop offset="50%" stop-color="#5ADC82"/>
+      <stop offset="100%" stop-color="#1a8c5f"/>
+    </linearGradient>
+    <radialGradient id="eyeGrad" cx="0.3" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e6e6e6"/>
+      <stop offset="100%" stop-color="#999999"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Фон -->
+  <rect width="512" height="512" rx="120" fill="url(#bgGrad)"/>
+  
+  <!-- Сетка (тонкая) -->
+  <g opacity="0.15" stroke="#5ADC82" stroke-width="3">
+    <line x1="128" y1="48" x2="128" y2="464"/>
+    <line x1="192" y1="48" x2="192" y2="464"/>
+    <line x1="256" y1="48" x2="256" y2="464"/>
+    <line x1="320" y1="48" x2="320" y2="464"/>
+    <line x1="384" y1="48" x2="384" y2="464"/>
+    <line x1="48" y1="128" x2="464" y2="128"/>
+    <line x1="48" y1="192" x2="464" y2="192"/>
+    <line x1="48" y1="256" x2="464" y2="256"/>
+    <line x1="48" y1="320" x2="464" y2="320"/>
+    <line x1="48" y1="384" x2="464" y2="384"/>
+  </g>
+  
+  <!-- Яблоко -->
+  <ellipse cx="376" cy="152" rx="28" ry="32" fill="#dc4034" filter="url(#glow)"/>
+  <ellipse cx="368" cy="144" rx="10" ry="10" fill="rgba(255,255,255,0.5)"/>
+  <path d="M376 128 L380 112" stroke="#3CB45A" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Тело змейки -->
+  <g filter="url(#glow)">
+    <!-- Хвост -->
+    <rect x="120" y="312" width="56" height="56" rx="20" fill="url(#snakeGrad)" opacity="0.7"/>
+    <!-- Сегмент 2 -->
+    <rect x="184" y="312" width="56" height="56" rx="20" fill="url(#snakeGrad)" opacity="0.8"/>
+    <!-- Сегмент 3 -->
+    <rect x="248" y="312" width="56" height="56" rx="20" fill="url(#snakeGrad)" opacity="0.9"/>
+    <!-- Сегмент 4 -->
+    <rect x="248" y="248" width="56" height="56" rx="20" fill="url(#snakeGrad)"/>
+    <!-- Голова -->
+    <rect x="248" y="184" width="56" height="56" rx="24" fill="url(#snakeGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="4"/>
+  </g>
+  
+  <!-- Глаза -->
+  <circle cx="268" cy="204" r="12" fill="url(#eyeGrad)"/>
+  <circle cx="284" cy="204" r="12" fill="url(#eyeGrad)"/>
+  <circle cx="268" cy="204" r="6" fill="#0a0a0a"/>
+  <circle cx="284" cy="204" r="6" fill="#0a0a0a"/>
+  
+  <!-- Блики в глазах -->
+  <circle cx="270" cy="202" r="3" fill="#ffffff"/>
+  <circle cx="286" cy="202" r="3" fill="#ffffff"/>
+</svg>
+

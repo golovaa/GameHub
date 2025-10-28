@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Классическая игра Змейка с красивым дизайном">
+  <meta name="theme-color" content="#5ADC82">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Змейка">
+  <title>Змейка — Игра</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Змейка</h1>
+
+    <div class="game-wrap">
+      <div class="hud">
+        
+        <div id="hud-status">Готово</div>
+        <div class="hud-right">
+          <div id="hud-score">Счёт: 0</div>
+          <button id="restart">Перезапуск (R)</button>
+        </div>
+      </div>
+
+      <canvas id="game" width="520" height="520"></canvas>
+    </div>
+
+    <p class="hint">Управление: стрелки • Пауза: Space • Перезапуск: R</p>
+  </div>
+  <div id="launcher" class="launch-overlay" role="button" aria-label="Запустить игру Змейка" tabindex="0">
+    <div class="launch-card">
+      <svg class="launch-icon" viewBox="0 0 128 128" aria-hidden="true">
+        <defs>
+          <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a2332"/>
+            <stop offset="100%" stop-color="#0d1419"/>
+          </linearGradient>
+          <linearGradient id="snakeGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6ef09a"/>
+            <stop offset="50%" stop-color="#5ADC82"/>
+            <stop offset="100%" stop-color="#1a8c5f"/>
+          </linearGradient>
+          <radialGradient id="eyeGrad" cx="0.3" cy="0.3" r="0.7">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="60%" stop-color="#e6e6e6"/>
+            <stop offset="100%" stop-color="#999999"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        
+        <!-- Фон -->
+        <rect width="128" height="128" rx="30" fill="url(#bgGrad)"/>
+        
+        <!-- Сетка (тонкая) -->
+        <g opacity="0.15" stroke="#5ADC82" stroke-width="0.8">
+          <line x1="32" y1="12" x2="32" y2="116"/>
+          <line x1="48" y1="12" x2="48" y2="116"/>
+          <line x1="64" y1="12" x2="64" y2="116"/>
+          <line x1="80" y1="12" x2="80" y2="116"/>
+          <line x1="96" y1="12" x2="96" y2="116"/>
+          <line x1="12" y1="32" x2="116" y2="32"/>
+          <line x1="12" y1="48" x2="116" y2="48"/>
+          <line x1="12" y1="64" x2="116" y2="64"/>
+          <line x1="12" y1="80" x2="116" y2="80"/>
+          <line x1="12" y1="96" x2="116" y2="96"/>
+        </g>
+        
+        <!-- Яблоко -->
+        <ellipse cx="94" cy="38" rx="7" ry="8" fill="#dc4034" filter="url(#glow)"/>
+        <ellipse cx="92" cy="36" rx="2.5" ry="2.5" fill="rgba(255,255,255,0.5)"/>
+        <path d="M94 32 L95 28" stroke="#3CB45A" stroke-width="2" stroke-linecap="round"/>
+        
+        <!-- Тело змейки -->
+        <g filter="url(#glow)">
+          <!-- Хвост -->
+          <rect x="30" y="78" width="14" height="14" rx="5" fill="url(#snakeGrad)" opacity="0.7"/>
+          <!-- Сегмент 2 -->
+          <rect x="46" y="78" width="14" height="14" rx="5" fill="url(#snakeGrad)" opacity="0.8"/>
+          <!-- Сегмент 3 -->
+          <rect x="62" y="78" width="14" height="14" rx="5" fill="url(#snakeGrad)" opacity="0.9"/>
+          <!-- Сегмент 4 -->
+          <rect x="62" y="62" width="14" height="14" rx="5" fill="url(#snakeGrad)"/>
+          <!-- Голова -->
+          <rect x="62" y="46" width="14" height="14" rx="6" fill="url(#snakeGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        </g>
+        
+        <!-- Глаза -->
+        <circle cx="67" cy="51" r="3" fill="url(#eyeGrad)"/>
+        <circle cx="71" cy="51" r="3" fill="url(#eyeGrad)"/>
+        <circle cx="67" cy="51" r="1.5" fill="#0a0a0a"/>
+        <circle cx="71" cy="51" r="1.5" fill="#0a0a0a"/>
+        
+        <!-- Блики в глазах -->
+        <circle cx="67.5" cy="50.5" r="0.7" fill="#ffffff"/>
+        <circle cx="71.5" cy="50.5" r="0.7" fill="#ffffff"/>
+      </svg>
+      <div class="launch-title">Змейка</div>
+      <div class="launch-subtitle">Нажмите для старта</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
